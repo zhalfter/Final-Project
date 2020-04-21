@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html><head><meta "charset=UTF-8">
+    
+    <title>BTTF</title>
+
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div style="display: none;">
+        <img src="images/family.png" alt="McFly Family">
+    </div>
+
+    <canvas width="1572" height="1418" style="width: 786px; height: 709px;"></canvas>
+
+    <script>
+      const canvas = document.querySelector('canvas');
+      const context = canvas.getContext('2d');
+      const image = document.querySelector('img');
+
+      let width;
+      let height;
+
+      let pxScale = window.devicePixelRatio;
+
+      function setup() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+
+        canvas.width = width * pxScale;
+        canvas.height = height * pxScale;
+
+        context.scale(pxScale, pxScale);
+
+        draw();
+      }
+
+      function draw() {
+        context.drawImage(image, 0, 0, window.innerWidth, window.innerHeight);
+      }
+
+    
+      window.addEventListener('load', setup);
+
+     
+      window.addEventListener('resize', setup);
+    </script>
+  
+</body></html>
