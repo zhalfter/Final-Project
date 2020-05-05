@@ -3,33 +3,42 @@
   <head>
     <meta charset="UTF-8">
     
-    <title>Fish</title>
+    <title>Talk Like A Fish</title>
 
     <style>
       body {
         margin: 0;
         display: flex;
         height: 100vh;
-        align-items: center;
         justify-content: center;
+        overflow:hidden;
       }
 
       .button {
-        position:fixed;
+        position:relative;
         background-color: red;
         color: black;
         padding: 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
         font-size: 16px;
-        margin: 220px 30px;
+        margin: 575px 45px;
+        margin-left: 6.5%;
         border-radius: 50%;
         z-index: 10;
       }
 
      canvas{
        position: absolute;
+     }
+
+     #back{
+       position:absolute;
+       z-index: 10;
+       width: 100px;
+       height:100px;
+       margin-top: 20%;
+       margin-left: -54%;
+       filter: brightness(1000%);
+
      }
 
     </style>
@@ -52,7 +61,7 @@
     
     
 
-
+    <a href='https://i6.cims.nyu.edu/~zh1278/380/audio'><img id='back' src='arrow.png'></a>
 
 
     
@@ -214,7 +223,7 @@
 
       window.addEventListener('load', setup);
 
-      //window.addEventListener('resize', setup);
+      window.addEventListener('resize', setup);
     </script>
   
   </body>

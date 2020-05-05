@@ -3,27 +3,36 @@
   <head>
     <meta charset="UTF-8">
     
-    <title>BTTF</title>
+    <title>Save Marty</title>
 
     <style>
       body {
         margin: 0;
         display: flex;
         height: 100vh;
-        align-items: center;
         justify-content: center;
       }
 
-     
+      #back{
+       position:absolute;
+       z-index: 10;
+       width: 100px;
+       height:100px;
+       margin-top: 20%;
+       margin-left: -98%;
+       filter: brightness(1000%);
+     }
 
     </style>
   </head>
 
   <body>
+
+    
   
     <div style="display: none;">
       <img id='nofamily' src="images/nofamily.png" alt="McFly Family">
-  </div>
+    </div>
     
     <div  style="display: none;">
         <img id='family' src="images/family.png" alt="McFly Family">
@@ -32,7 +41,7 @@
     <canvas width="1572" height="1418" style="width: 786px; height: 709px;"></canvas>
 
 
-
+    <a href='https://i6.cims.nyu.edu/~zh1278/380/audio'><img id='back' src='arrow.png'></a>
 
     
     <script>
@@ -45,6 +54,9 @@
       let height;
 
       let pxScale = window.devicePixelRatio;
+
+      var song = new Audio();
+      song.src = "EarthAngel.mp3";
 
       function setup() {
         width = window.innerWidth;
@@ -118,18 +130,33 @@
           opacity = 1
         }
         context.globalAlpha = opacity;
-        context.drawImage(image, 0, 0, window.innerWidth, window.innerHeight);  
-
-      
-
-       
+        context.drawImage(image, 0, 0, window.innerWidth, window.innerHeight);
 
         requestAnimationFrame(draw);
       }
 
+
+      counter = 1;
       
+      function audio() {
+        song.volume = 0.5;
+        counter += 1;
+
+        if ((counter % 2) == 0){
+          song.play();
+        }
+        else if ((counter % 2) != 0){
+          song.pause();
+        }
+
+
+      }
+
+
+
 
       window.addEventListener('load', setup);
+      window.addEventListener('click', audio);
 
       //window.addEventListener('resize', setup);
     </script>

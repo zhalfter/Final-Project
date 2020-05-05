@@ -4,38 +4,138 @@
     <meta charset='UTF-8'>
     <title>The Power of Our Voices</title>
 
-    <style>
-      body {
-        margin: 0;
-        display: flex;
-        height: 100vh;
-        width: 100vw;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-
-      #container{
-        position: absolute;
-      }
-
-    </style>
-  </head>
-
-  <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/p5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/addons/p5.dom.js"></script>
+        <script src="JavaScript/p5.speech.js"></script>
+        <script>
 
 
-    <div style="display: none;">
-        <img src="menu.png" alt="Menu Options: Fish, Marty, Glass">
-    </div>
+        var foo = new p5.SpeechRec(); // speech recognition object (will prompt for mic access)
+        foo.continuous = true;
+        foo.onResult = showResult; // bind callback function to trigger when speech is recognized
+        foo.start(); // start listening
 
+        function showResult(){
+            console.log(foo.resultString); // log the result
+
+
+            if ((foo.resultString) == 'glass'){
+            window.location.replace("https://i6.cims.nyu.edu/~zh1278/380/audio/glass.html");
+            }
+
+            else if ((foo.resultString) == 'fish'){
+            window.location.replace("https://i6.cims.nyu.edu/~zh1278/380/audio/fish.html");
+            }
+
+            if ((foo.resultString) == 'Marty'){
+            window.location.replace("https://i6.cims.nyu.edu/~zh1278/380/audio/bttf.html");
+            }
+
+        }
+        </script>
+
+
+        <style>
+            body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: black;
+            }
+
+            audio{
+            position: absolute;
+            z-index: 10;
+            margin-top: 1000px;
+            }
+
+        </style>
+
+
+    </head>
+    <body>
+
+        <audio controls autoplay loop id='night' src="NightTrain.mp3"></audio>
+
+        <div style="display: none;">
+            <img src="menu.png" alt="Menu Options: Fish, Marty, Glass">
+        </div>
     
-    <canvas id='menu' width="1572" height="1418" style="width: 786px; height: 709px;"></canvas>
+        
+        <canvas id='menu' width="1572" height="1418" style="width: 786px; height: 709px;"></canvas>
 
-    <script src='JavaScript/p5.speech.js'></script>
-    <script src='JavaScript/menuscript.js'></script>
-    
-    
-  
-  </body>
+
+
+
+
+        <script>
+            const canvas = document.getElementById('menu');
+            const context = canvas.getContext('2d');
+            const image = document.querySelector('img');
+            
+            let width;
+            let height;
+            
+            let pxScale = window.devicePixelRatio;
+            
+            var sound = new Audio();
+            sound.src = "talk/zach.mp3";
+            
+            
+            var x = document.getElementById("night");
+         
+            function setup() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                
+                canvas.style.width = width + 'px';
+                canvas.style.height = (height+100) + 'px';
+                
+                canvas.width = width * pxScale;
+                canvas.height = height * pxScale;
+                
+                context.scale(pxScale, pxScale);
+                
+                draw();
+                x.volume = 0.2;
+                
+            }
+            
+
+            let directionX = 1;
+            let opacity = 0;
+
+            function draw() {
+
+                context.globalAlpha = 1;   
+                
+                
+                opacity += directionX * .0006;
+                if (opacity < 0) {
+                opacity = 0
+                }
+                if (opacity > 1){
+                opacity = 1
+                }
+                context.globalAlpha = opacity;
+                context.drawImage(image, 70, 0, window.innerWidth, window.innerHeight); 
+                
+            }
+
+            function audio() {
+                sound.play();
+            }
+            
+            
+            window.addEventListener('load', setup);
+            window.addEventListener('click', audio);
+            
+            
+            //window.addEventListener('resize', setup);
+        </script>
+    </body>
 </html>

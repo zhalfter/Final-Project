@@ -3,19 +3,27 @@
   <head>
     <meta charset="UTF-8">
     
-    <title>Glass</title>
+    <title>Break The Glass</title>
 
     <style>
       body {
         margin: 0;
         display: flex;
         height: 100vh;
-        align-items: center;
         justify-content: center;
       }
 
      canvas{
        position: absolute;
+     }
+
+     #back{
+       position:absolute;
+       z-index: 10;
+       width: 100px;
+       height:100px;
+       margin-top: 20%;
+       margin-left: -48%;
      }
 
     </style>
@@ -25,7 +33,7 @@
   
     <div style="display: none;">
       <img id='kitchen' src="glassimages/tabletop.jpeg" alt="Table">
-  </div>
+    </div>
     
     <div  style="display: none;">
         <img id='glass' src="glassimages/wineglass.png" alt="Wine Glass">
@@ -33,7 +41,11 @@
 
     <div  style="display: none;">
       <img id='broken' src="glassimages/crackedtabletop.jpeg" alt="Broken Glass Table">
-  </div>
+    </div>
+
+
+    <a href='https://i6.cims.nyu.edu/~zh1278/380/audio'><img id='back' src='arrow.png'></a>
+
 
 
     <canvas id='canvas1' width="1572" height="1418" style="width: 786px; height: 709px;"></canvas>
