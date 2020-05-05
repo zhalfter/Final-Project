@@ -7,6 +7,9 @@ let height;
 
 let pxScale = window.devicePixelRatio;
 
+
+
+
 function setup() {
   width = window.innerWidth;
   height = window.innerHeight;
